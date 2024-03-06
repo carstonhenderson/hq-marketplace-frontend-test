@@ -1,50 +1,49 @@
-# HQ - UI test
+# HQ - Frontend Coding Challenge
+## General Overview
+This challenge reflects a typical project you might encounter on our team. You will build a responsive marketplace where customers can add products to their cart, proceed to checkout, and successfully place an order. This test aims to assess your proficiency in frontend development, component creation, state management, API integration, user experience optimization, and more.
 
-Welcome to your frontend test for HQ, clone the repository and start by
-following the instructions below.
+### Setup Instructions
+1. **Environment Variables**
+    - Create a `.env` file in the root directory with the following content:
+      ```
+      NEXT_PUBLIC_API_URL="http://localhost:8000"
+      ```
 
-Here at HQ we do a lot of e-commerce applications every one gets an opportunity to dip their toes in an e-commerce project. This project is a scaffolding of a standard marketplace. This application is designed to test your skills in navigating a next.js application, building react components, making API requests, following existing codebase patterns.
+2. **Backend Setup**
+    - Ensure your backend application is running as per the provided instructions.
 
-# The goal
+3. **Frontend Application**
+    - Start your frontend application by executing:
+      ```
+      yarn dev
+      ```
+    - Access your application at `http://localhost:3000`
 
-Complete this application so that you can render the marketplace navigate to the cart page and ultimately place a successful order. Create the necessary components, functions, and page/s and integrate this frontend with the API.
+## Objectives
+  Your main goal is to complete the application by achieving the following tasks.
 
-## Running the application
+### User Story
+  Customer is shown a responsive marketplace where they can add products to the cart. For this test, the customer will need to add more than one product to the cart before proceeding to checkout (figure out how this is going to work). Customers should be prompted for a delivery address on the first product that they can use for the second product. Each product in the cart will have a service fee that the customer can see as part of the overall total.
+  
+### Functional Requirements
+  - **Marketplace:**
+    - Utilize the provided endpoint to fetch marketplace data and render a responsive interface.
+      - It's important to note that we're also interested in observing your debugging process.
+    - Allow customers to add products to their cart. A minimum of two products is required to proceed to checkout.
+  - **Error Management:**
+    - Manage errors effectively (and proactively) for both the user and developer.
+    - **BONUS:** Develop an error logger to log messages directly to the console.
+  - **Service Fee Integration:**
+    - Create a `/service-fee` endpoint that returns the service fee set for particular vendors and add that to the total of the cart.
+  - **Checkout Process:**
+    - Customers should be prompted for a delivery address on the first product. This address should be reusable for subsequent products, or they can input another delivery address.
+      - **BONUS:** Make the address available for other products in the cart without re-rendering the page.
+    - After a suuccessful checkout, redirect customers to a `/thank-you` page
 
-- Create an `.env` file with the following variables:
+### Technical Requirements
+  - Follow clean coding principles, adhering to DRY and SOLID standards.
+  - Ensure the application is responsive and user-friendly across devices.
 
-```
-NEXT_PUBLIC_API_URL="http://localhost:8000"
-```
+## Submission Guidelines
+Please ensure your submission meets all functional and technical requirements. 
 
-- Run your BE application
-
-- Run your FE application by running:
-
-```bash
-  yarn dev
-```
-
-- Your application should be on `http://localhost:3000`
-
-## Tasks
-
-- Build a `ProductCard` component that can:
-
-  - a. Display individual products
-  - b. "Buy Now" button, ability to add the product to cart and immediately navigate the user to the checkout page `/checkout`.
-  - c. "Add to Cart" button, ability to add product to cart and make the PopOver component appear.
-
-- Build cart page with the following:
-  - a. The cart page should display the products added to cart.
-  - b. The cart page should have the ability to remove items in cart.
-  - c. "Checkout" button, there should be a checkout button that navigates the user to checkout.
-  - d. "Continue Shopping" button, user should be able to navigate back to the marketplace landing page and continue shopping.
-
-## Bonus points
-
-This is not needed for the test but would gain you extra points if you
-manage to fit it within the allocated time.
-
-- Style the whole app or just parts of it, this is the time to show us how creative you can be. Some clients would request just a feature without any design and we have to build them as fast as we can balancing aesthetics, functionality and stability.
-- Create unit tests for the ProductCard component using react-testing-library
