@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useCallback } from "react"
-import axios from "axios"
 import { ProductCard, Flex } from "components"
 import { Product } from "context/MarketplaceContextProvider"
 import dynamic from "next/dynamic"
@@ -15,16 +14,7 @@ const Home: React.FC = () => {
   // ============================== FUNCTIONS ===============================
 
   const getProducts = useCallback(async () => {
-    try {
-      const { data: productsRes } = await axios.get<Product[]>(
-        `${process.env.NEXT_PUBLIC_API_URL}/products`
-      )
-      if (productsRes) {
-        setProducts(productsRes)
-      }
-    } catch (error) {
-      console.error(error)
-    }
+    // you will need to find the endpoint to fetch products
   }, [])
 
   // ============================== USE EFFECTS ===================================

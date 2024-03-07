@@ -7,13 +7,11 @@ import {
   CheckoutProductsSection,
   MarketplaceHeader,
 } from "components"
-import axios from "axios"
 import Loader from "../components/Loader"
 import { useMarketplaceState } from "../context/MarketplaceContextProvider"
 
 const CheckoutPage: React.FC = () => {
   // ============================== HOOKS ===================================
-  const router = useRouter()
   const state = useMarketplaceState()
 
   // ============================== STATES ===================================
@@ -31,19 +29,6 @@ const CheckoutPage: React.FC = () => {
 
   const placeOrder = async () => {
     setIsLoading(true)
-
-    try {
-      const { data: checkout } = await axios.post<{ success: boolean }>(
-        `${process.env.NEXT_PUBLIC_API_URL}/products`
-      )
-      if (checkout.success) {
-        setIsLoading(false)
-        router.push("/order-confirmation")
-      }
-    } catch (error) {
-      setIsLoading(false)
-      console.error(error)
-    }
   }
 
   // ============================== RENDER ===============================

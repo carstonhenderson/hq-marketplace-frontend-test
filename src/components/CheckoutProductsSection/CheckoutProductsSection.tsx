@@ -1,10 +1,10 @@
 import { Button, Flex, Text } from "components"
 import {
+  CartItem,
   useMarketplaceDispatch,
   useMarketplaceState,
 } from "context/MarketplaceContextProvider"
 import { BiTrash } from "react-icons/bi"
-import { CartItem } from "context/MarketplaceContextProvider"
 import { pricify } from "utils"
 
 const CheckoutProductsSection: React.FC = () => {
