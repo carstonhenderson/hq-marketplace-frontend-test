@@ -23,7 +23,7 @@ This challenge reflects a typical project you might encounter on our team. You w
   Clone the respository and complete the following tasks.
 
 ### User Story
-  Customer is shown a responsive marketplace where they can add products to the cart. For this test, the customer will need to add more than one product to the cart before proceeding to checkout (figure out how this is going to work). In checkout, customers will be prompted for a delivery address on the first product that they can use for the second product. Each product in the cart will have a service fee that the customer can see as part of the overall total.
+  Customer is shown a responsive marketplace where they can add products to the cart. For this test, the customer will need to add more than one product to the cart before proceeding to checkout (figure out how this is going to work). In checkout, customers will be prompted for a delivery address. Inputted addresses should become delivery options for the other products. Each vendor charges a service fee that the customer can see as part of the overall total.
   
 ### Functional Requirements
   - **Marketplace:**

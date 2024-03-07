@@ -14,7 +14,7 @@ const Home: React.FC = () => {
   // ============================== FUNCTIONS ===============================
 
   const getProducts = useCallback(async () => {
-    // endpoint: `${process.env.NEXT_PUBLIC_API_URL}/products`
+    // you will need to find the endpoint to fetch products
   }, [])
 
   // ============================== USE EFFECTS ===================================
