@@ -34,7 +34,7 @@ This challenge reflects a typical project you might encounter on our team. You w
     - Manage errors effectively (and proactively) for both the user and developer.
     - **BONUS:** Develop an error logger to log messages directly to the console.
   - **Service Fee Integration:**
-    - Create a `/service-fee` endpoint that returns the service fee set for particular vendors and add that to the total of the cart.
+    - Create a fees endpoint that returns the service fee set for particular vendors and add that to the total of the cart.
   - **Checkout Process:**
     - Customers should be prompted for a delivery address on the first product. This address should be reusable for subsequent products, or they can input another delivery address.
       - **BONUS:** Make the address available for other products in the cart without re-rendering the page.
