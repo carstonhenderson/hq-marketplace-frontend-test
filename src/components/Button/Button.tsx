@@ -117,6 +117,12 @@ export const MainButton = styled.button<ButtonType>`
     padding: 4px 12px !important;
   }
 
+  &.primary {
+    background-color: #64748b;
+    border: 1px solid #ffffff25;
+    color: white;
+  }
+
   &.blue {
     background-color: ${colors.blue};
     color: white;
@@ -162,7 +168,7 @@ export const MainButton = styled.button<ButtonType>`
     background: transparent;
     box-shadow: none;
     &:hover {
-      box-shadow: 0 4px 4px -2px rgba(0, 20, 30, 0.3);
+      background-color: #64748b50;
     }
   }
   &.link {

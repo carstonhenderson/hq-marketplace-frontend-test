@@ -10,5 +10,5 @@ export const pricify = (price: number, asNumber?: boolean) => {
 
   return asNumber
     ? Number(dollarsToCents.toFixed(2))
-    : dollarsToCents.toFixed(2)
+    : `$${dollarsToCents.toFixed(2)}`
 }

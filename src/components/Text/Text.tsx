@@ -83,7 +83,7 @@ const Body = styled.div<TextProps>`
   /* Common classes */
   /* Checkout */
   &.f1 {
-    color: ${colors.black};
+    color: ${colors.white};
     font-size: 32px;
     ${mediaQueries("phonePlus")} {
       font-size: 36px;
@@ -98,7 +98,7 @@ const Body = styled.div<TextProps>`
   }
 
   &.f2 {
-    color: ${colors.black};
+    color: ${colors.white};
     font-size: 20px;
     font-weight: bold;
     letter-spacing: 0;

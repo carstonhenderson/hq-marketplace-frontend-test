@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from "react"
+import React, { useEffect, useRef } from "react"
 import { useRouter } from "next/router"
 import {
   useMarketplaceState,
@@ -6,56 +6,31 @@ import {
 } from "context/MarketplaceContextProvider"
 import { Flex, Text, Button } from "components"
 import { FaTrash } from "react-icons/fa"
+import styled from "@emotion/styled"
 
 export interface CarPopOverProps {
   open: boolean
+  onClose: () => void
 }
 
-const CartPopover: React.FC<CarPopOverProps> = ({ open }) => {
-  // ============================== HOOKS ===================================
+const StyledWarningMessageCard = styled.div`
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #fefce8;
+  color: #854d0e;
+  font-size: 14px;
+`
+
+const CartPopover: React.FC<CarPopOverProps> = ({ open, onClose }) => {
   const dispatch = useMarketplaceDispatch()
   const state = useMarketplaceState()
   const router = useRouter()
 
-  // ============================== REFS ===============================
-
   const popoverRef = useRef<HTMLDivElement>(null)
-  const timeoutRef = useRef<NodeJS.Timeout>()
-
-  // ============================== STATES ===================================
-  const [isOpen, setIsOpen] = React.useState(false)
-
-  // ============================== FUNCTIONS ===============================
-
-  const closePopover = useCallback(() => {
-    setIsOpen(false)
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current)
-    }
-  }, [])
 
   const checkout = () => {
     router.push("/checkout")
   }
-
-  const goToCart = () => {
-    router.push("/cart")
-  }
-
-  // ============================== USE EFFECTS ===================================
-
-  useEffect(() => {
-    if (state?.cart) {
-      setIsOpen(state?.cart?.length > 0)
-      timeoutRef.current = setTimeout(closePopover, 5000)
-    }
-  }, [closePopover, state?.cart])
-
-  useEffect(() => {
-    if (open) {
-      setIsOpen(true)
-    }
-  }, [open])
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -63,7 +38,7 @@ const CartPopover: React.FC<CarPopOverProps> = ({ open }) => {
         popoverRef.current &&
         !popoverRef.current.contains(event.target as Node)
       ) {
-        closePopover()
+        onClose()
       }
     }
 
@@ -71,42 +46,62 @@ const CartPopover: React.FC<CarPopOverProps> = ({ open }) => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside)
     }
-  }, [closePopover])
+  }, [onClose])
 
-  // ============================== RENDER ===============================
+  const totalQuantity = state.cart.reduce(
+    (total, product) => total + product.quantity,
+    0
+  )
 
   return (
     <Flex
       ref={popoverRef}
       column
       position="absolute"
-      top="0"
-      right="0"
+      top="1em"
+      right="1em"
       width="300px"
-      background="white"
-      border="1px solid black"
+      background="#1e293b"
+      border="1px solid #334155"
       padding="1em"
-      display={isOpen ? "block" : "none"}
+      display={open ? "flex" : "none"}
       boxShadow="0 0 10px 0 rgba(0, 0, 0, 0.2)"
       borderRadius="8px"
+      gap="32px"
+      align="stretch"
     >
       <Text kind="f2">Your Cart</Text>
-      {state?.cart?.map((item, index) => (
-        <Flex
-          key={`${item.id} - ${index}`}
-          justify="space-between"
-          margin="initial initial 1em"
-        >
-          <p>{`${item.name} x${item.quantity}`}</p>
-          <FaTrash
-            onClick={() => dispatch({ type: "REMOVE_ITEM", payload: item.id })}
-          />
-        </Flex>
-      ))}
 
-      <Flex gap="16px">
-        <Button onClick={checkout}>Checkout</Button>
-        <Button onClick={goToCart}>Cart</Button>
+      {totalQuantity < 2 && (
+        <StyledWarningMessageCard>
+          <Text>You need 2 or more items in your cart to check out</Text>
+        </StyledWarningMessageCard>
+      )}
+
+      <Flex column gap="16px" align="stretch">
+        {state.cart.map((item, index) => (
+          <Flex key={`${item.id} - ${index}`} justify="space-between">
+            <p>{`${item.name} x${item.quantity}`}</p>
+            <Button
+              onClick={() =>
+                dispatch({ type: "REMOVE_ITEM", payload: item.id })
+              }
+              className="transparent"
+            >
+              <FaTrash />
+            </Button>
+          </Flex>
+        ))}
+      </Flex>
+
+      <Flex gap="16px" justify="flex-end">
+        <Button
+          onClick={checkout}
+          disabled={totalQuantity < 2}
+          className="primary"
+        >
+          Checkout
+        </Button>
       </Flex>
     </Flex>
   )

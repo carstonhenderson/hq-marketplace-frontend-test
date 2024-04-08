@@ -59,6 +59,7 @@ export type FlexType = {
   flexWrap?: string
   /** property creates a clipping region that sets what part of an element should be shown */
   clipPath?: string
+  flex?: string
   /** If present it sets the flex-grow value of the element; takes string representation of number */
   flexGrow?: string
   /** If present it sets the width of the element; takes any CSS width value (pixels, percentage, etc.) */
@@ -130,6 +131,7 @@ export const Flex = styled.div<FlexType>`
   align-self: ${({ alignSelf = "auto" }) => alignSelf};
   align-content: ${({ alignContent }) => alignContent};
   font-size: ${({ fontSize }) => fontSize};
+  flex: ${({ flex }) => flex};
   flex-grow: ${({ flexGrow }) => flexGrow};
   flex-shrink: ${({ flexShrink }) => flexShrink};
   flex-wrap: ${({ flexWrap }) => flexWrap};

@@ -23,7 +23,7 @@ const MarketplaceHeader: React.FC = () => {
       align="center"
       width="100%"
       padding="8px"
-      border="2px solid gray"
+      borderBottom="1px solid #475569"
     >
       <Flex column align="flex-start" justify="flex-start" padding="0 16px">
         <Text kind="h1" margin="0" padding="0">
@@ -33,18 +33,18 @@ const MarketplaceHeader: React.FC = () => {
       </Flex>
       <Flex position="relative" margin="0 16px">
         <Text kind="f1 pointer">
-          <FiShoppingCart onClick={handleCartIconClick} />
+          <FiShoppingCart onClick={handleCartIconClick} color="white" />
         </Text>
         <Flex
           position="absolute"
           top="90"
           right="90"
-          border="1px solid black"
-          background="black"
+          border="1px solid white"
+          background="white"
           borderRadius="50%"
           padding="2px 6px"
         >
-          <Text kind="f7" color="white">
+          <Text kind="f7" color="black">
             {state?.cart?.reduce(
               (total, product) => total + product.quantity,
               0
@@ -52,7 +52,10 @@ const MarketplaceHeader: React.FC = () => {
           </Text>
         </Flex>
       </Flex>
-      <CartPopover open={isCartPopoverOpen} />
+      <CartPopover
+        open={isCartPopoverOpen}
+        onClose={() => setIsCartPopoverOpen(false)}
+      />
     </Flex>
   )
 }
