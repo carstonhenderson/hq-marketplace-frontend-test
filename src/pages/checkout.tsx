@@ -116,7 +116,7 @@ const CheckoutPage: React.FC = () => {
       },
       body: JSON.stringify({
         cart: formattedCart,
-        // customer_name: customerName,
+        customer_name: customerName,
         fees: fees,
       }),
     })
